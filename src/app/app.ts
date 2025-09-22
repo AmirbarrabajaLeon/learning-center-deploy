@@ -1,9 +1,12 @@
 import {Component, inject, signal} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {Home} from './shared/presentation/views/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [
+    Home
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
