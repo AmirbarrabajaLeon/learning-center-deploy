@@ -4,6 +4,7 @@ import {Home} from './shared/presentation/views/home/home';
 import {About} from './shared/presentation/views/about/about';
 import {PageNotFound} from './shared/presentation/views/page-not-found/page-not-found';
 import {FooterContent} from './shared/presentation/components/footer-content/footer-content';
+import {Layout} from './shared/presentation/components/layout/layout';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {FooterContent} from './shared/presentation/components/footer-content/foo
     Home,
     About,
     PageNotFound,
-    FooterContent
+    FooterContent,
+    Layout
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
