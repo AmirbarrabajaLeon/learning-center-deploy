@@ -33,8 +33,12 @@ export class LearningStore {
    * @param id - The ID of the category.
    * @returns A Signal containing the Category object or undefined if not found.
    */
-  getCategoryById(id: number | null | undefined): Signal<Category | undefined> {
+  getCategoryById(id: number): Signal<Category | undefined> {
     return computed(() => id ? this.categories().find(c => c.id === id) : undefined);
+  }
+
+  getCourseById(id: number): Signal<Course | undefined> {
+    return computed(() => id ? this.courses().find(c => c.id === id) : undefined);
   }
 
   /**
@@ -46,7 +50,7 @@ export class LearningStore {
     this.errorSignal.set(null);
     this.learningApi.createCourse(course).pipe(retry(2)).subscribe({
       next: createdCourse => {
-        //this.assignCategoryToCourse(createdCourse);
+        createdCourse = this.assignCategoryToCourse(createdCourse);
         this.coursesSignal.update(courses => [...courses, createdCourse]);
         this.loadingSignal.set(false);
       },
@@ -66,7 +70,7 @@ export class LearningStore {
     this.errorSignal.set(null);
     this.learningApi.updateCourse(updatedCourse).pipe(retry(2)).subscribe({
       next: course => {
-        //this.assignCategoryToCourse(course);
+        course = this.assignCategoryToCourse(course);
         this.coursesSignal.update(courses =>
           courses.map(c => c.id === course.id ? course : c)
         );
@@ -168,7 +172,7 @@ export class LearningStore {
         console.log(courses);
         this.coursesSignal.set(courses);
         this.loadingSignal.set(false);
-        //this.assignCategoriesToCourses();
+        this.assignCategoriesToCourses();
       },
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to load courses'));
@@ -201,8 +205,8 @@ export class LearningStore {
 
   private assignCategoryToCourse(course: Course): Course {
     const categoryId = course.categoryId ?? 0;
-    const category = categoryId ? this.categories().find(cat => cat.id === categoryId) ?? null : null;
-    return {...course, category} as Course;
+    course.category = categoryId ? this.getCategoryById(categoryId)() ?? null : null;
+    return course;
   }
 
   /**
