@@ -2,30 +2,31 @@
   "categories": [
     {
       "id": 1,
-      "name": "Java"
+      "name": ".net"
     },
     {
       "id": 2,
-      "name": "Spring Boot"
+      "name": "Youtube"
     },
     {
       "id": 3,
-      "name": "TypeScript"
+      "name": "Yolo"
     },
     {
       "id": 4,
-      "name": "Angular"
+      "name": "C# Sharp"
     },
     {
       "id": 5,
-      "name": "RESTful"
+      "name": "FastAPI"
     }
   ],
   "courses": [
     {
       "id": 1,
       "title": "Java for Beginners",
-      "description": "An introductory course to Java programming language."
+      "description": "An introductory course to Java programming language.",
+      "categoryId": 1
     },
     {
       "id": 2,
