@@ -4,6 +4,10 @@
   "description": "ACME Learning Center Application",
   "author": "Open-Source Applications Development Team",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.19 <23",
+    "npm": ">=10"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
